@@ -1,0 +1,10 @@
+{
+  "overrides": [
+    {
+      "files": ["site/**/*.php"],
+      "options": {
+        "parser": "html"
+      }
+    }
+  ]
+}
