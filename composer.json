@@ -1,6 +1,6 @@
 {
-  "name": "arnoson/kirby-vite-multi-page-kit",
-  "description": "A multi-page Kirby CMS + Vite starter kit",
+  "name": "mi-skam/kirby-vite-tailwind-basic-kit",
+  "description": "A multi-page Kirby CMS + Vite + TailwindCSS starter kit",
   "type": "project",
   "license": "MIT",
   "require": {

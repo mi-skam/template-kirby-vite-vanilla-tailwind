@@ -1,4 +1,6 @@
-# Kirby Vite Multi-Page Kit
+# Kirby Vite Tailwind Multi-Page Kit
+
+_Heaviliy 🔥 based on Arno's [work](https://github.com/arnoson/kirby-vite-multi-page-kit) !!!_
 
 ## Features
 
@@ -6,6 +8,7 @@
 - 📚 Multiple pages
 - 🔄 Live Reloading for Kirby templates, snippets, content, ... changes
 - 📂 [Public folder structure](https://getkirby.com/docs/guide/configuration#custom-folder-setup__public-folder-setup)
+- 💎 TailwindCSS support
 
 ## Installation
 

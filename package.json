@@ -1,5 +1,5 @@
 {
-  "name": "kirby-vite-basic-kit",
+  "name": "kirby-vite-tailwind-basic-kit",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
@@ -9,7 +9,7 @@
     "build": "vite build",
     "preview": "npm run build && npm run server"
   },
-  "author": "arnoson",
+  "author": "mi-skam",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^10.4.13",
