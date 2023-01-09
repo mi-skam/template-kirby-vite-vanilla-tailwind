@@ -20,6 +20,13 @@ const input = Object.fromEntries([
 export default ({ mode }) => ({
   root: 'src',
   base: mode === 'development' ? '/' : '/dist/',
+  
+  server: {
+    port: 3000,
+  },
+  preview: {
+    port: 4000,
+  },
 
   resolve: {
     alias: [{ find: '@', replacement: resolve(__dirname, 'src') }]
