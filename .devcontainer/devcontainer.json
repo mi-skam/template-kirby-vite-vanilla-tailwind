@@ -1,6 +1,6 @@
 {
     "build": {
-        "dockerfile": "./Dockerfile",
+        "dockerfile": "Dockerfile",
         "context": "."
     },
     "features": {
@@ -11,15 +11,12 @@
             "userGid": "1000",
             "upgradePackages": "true"
         },
-        "./local-features/apache-config": "latest",
         "ghcr.io/devcontainers/features/git:1": {
             "version": "latest",
             "ppa": "false"
-        }
+		},
+		"ghcr.io/devcontainers/features/node:1": {}
     },
-    "overrideFeatureInstallOrder": [
-        "ghcr.io/devcontainers/features/common-utils"
-    ],
     // Configure tool-specific properties.
     "customizations": {
         // Configure properties specific to VS Code.
@@ -38,7 +35,7 @@
     },
     // Use 'forwardPorts' to make a list of ports inside the container available locally.
     "forwardPorts": [
-        8080
+        8888
     ],
     // Use 'postCreateCommand' to run commands after the container is created.
     // "postCreateCommand": "sudo chmod a+x \"$(pwd)\" && sudo rm -rf /var/www/html && sudo ln -s \"$(pwd)\" /var/www/html"

@@ -5,23 +5,13 @@ FROM php:${VARIANT}
 ENV DEBIAN_FRONTEND=noninteractive 
 ENV IPE_GD_WITHOUTAVIF=1
 
-# Install gd
-RUN curl -sSL https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions -o - | sh -s \
-      gd \
+RUN apt-get update && \
+apt-get -y install --no-install-recommends zlib1g-dev libpng-dev
 
-# Install xdebug
-RUN yes | pecl install xdebug \
-    && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.mode = debug" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.start_with_request = yes" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && echo "xdebug.client_port = 9000" >> /usr/local/etc/php/conf.d/xdebug.ini \
-    && rm -rf /tmp/pear
+# Install gd
+RUN docker-php-ext-install gd
 
 # Install composer
 RUN curl -sSL https://getcomposer.org/installer | php \
     && chmod +x composer.phar \
     && mv composer.phar /usr/local/bin/composer
-
-# [Optional] Uncomment this section to install additional packages.
-# RUN apt-get update && \
-# apt-get -y install --no-install-recommends git

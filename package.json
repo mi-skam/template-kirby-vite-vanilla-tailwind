@@ -4,8 +4,8 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "vite": "vite --host",
-    "dev": "concurrently \"npm:server\" \"npm:vite\"",
+    "vite": "vite",
+    "dev": "concurrently \"npm:serve\" \"npm:vite\"",
     "serve": "php -S localhost:8888 -t public server.php",
     "build": "vite build",
     "preview": "concurrently \"npm:build\" \"npm:serve\""
