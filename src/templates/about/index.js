@@ -1,4 +1,3 @@
-import '@/index.js'
-import './index.css'
+import './index.css';
 
-console.log('template about')
+console.log('template about');

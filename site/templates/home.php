@@ -1,6 +1,3 @@
-<?php
-/** @var Kirby\Cms\Page $page */
-
-snippet('header'); ?>
+<?php snippet('header', ['entry' => 'home']); ?>
 <h1 class="text-4xl"><?= $page->title() ?></h1>
-<?php snippet('footer'); ?>
+<?php snippet('footer', ['entry' => 'home']); ?>

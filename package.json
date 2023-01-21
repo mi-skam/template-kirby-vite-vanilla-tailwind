@@ -5,16 +5,23 @@
   "type": "module",
   "scripts": {
     "vite": "vite",
-    "dev": "concurrently \"npm:serve\" \"npm:vite\"",
-    "serve": "php -S localhost:8888 -t public server.php",
+    "dev": "concurrently \"npm:php-server\" \"npm:vite\"",
+    "php-server": "cross-os php-server-os",
+    "php-server-os" :{
+      "linux": "bash ./php.sh",
+      "win32": "echo 'I need to be created for windows, too!'"
+    },
+    "php-server-fallback": "php -S localhost:8888 -t public server.php",
     "build": "vite build",
-    "preview": "concurrently \"npm:build\" \"npm:serve\""
+    "preview": "concurrently \"npm:build\" \"npm:php-server\""
   },
   "author": "mi-skam",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^10.4.13",
     "concurrently": "^7.5.0",
+    "cross-os": "^1.5.0",
+    "dotenv": "^16.0.3",
     "eslint": "^8.30.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.2.1",

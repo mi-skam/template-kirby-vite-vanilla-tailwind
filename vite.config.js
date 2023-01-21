@@ -1,42 +1,45 @@
-import { resolve } from 'path'
-import fs from 'fs'
-import kirby from 'vite-plugin-kirby'
+import { resolve } from 'path';
+import { readdirSync, statSync } from 'fs';
+import kirby from 'vite-plugin-kirby';
+import * as dotenv from 'dotenv';
 
-const root = 'src'
-const templateDir = resolve(__dirname, `${root}/templates`)
-const templates = fs
-  .readdirSync(templateDir)
-  .filter(file => !(/^\./).test(file))
-  .filter(file => fs.statSync(`${templateDir}/${file}`).isDirectory())
+
+dotenv.config();
+
+
+const root = resolve(__dirname, 'src');
+const outDir = resolve(__dirname, 'public', 'dist');
+const templateDir = resolve(__dirname, root, 'templates');
+
+const templates = readdirSync(templateDir)
+  .filter((file) => !/^\./.test(file))
+  .filter((file) => statSync(`${templateDir}/${file}`).isDirectory());
 
 const input = Object.fromEntries([
-  ...templates.map(template => [
+  ...templates.map((template) => [
     template,
-   `${templateDir}/${template}/index.js`
+    `${templateDir}/${template}/index.js`,
   ]),
-  ['shared', resolve(__dirname, `${root}/index.js`)] 
-])
+  ['shared', resolve(__dirname, `${root}/index.js`)],
+]);
 
 export default ({ mode }) => ({
-  root: 'src',
+  root,
   base: mode === 'development' ? '/' : '/dist/',
-  
+
   server: {
+    host: process.env.VITE_DEV_HOST || 'localhost',
     port: 3000,
   },
   preview: {
     port: 4000,
   },
 
-  resolve: {
-    alias: [{ find: '@', replacement: resolve(__dirname, 'src') }]
-  },  
-
   build: {
-    outDir: resolve(process.cwd(), 'public/dist'),
+    outDir,
     emptyOutDir: true,
-    rollupOptions: { input }
+    rollupOptions: { input },
   },
 
-  plugins: [kirby()]
-})
+  plugins: [kirby()],
+});
