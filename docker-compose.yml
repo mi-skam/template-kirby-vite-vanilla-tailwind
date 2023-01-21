@@ -1,0 +1,36 @@
+services:
+  www:
+    image: caddy:2.6.2-alpine
+    volumes:
+      - $PWD/Caddyfile:/etc/caddy/Caddyfile
+      - app:/srv
+      - caddy_data:/data
+      - caddy_config:/config
+
+    networks:
+      - kirby
+    ports:
+      - 8888:8888
+      - 443:443
+      - 443:443/udp
+      - 80:80
+
+  php:
+    image: php:8.1.14-fpm-alpine3.17
+    volumes:
+      - app:/srv
+    networks:
+      - kirby
+    ports:
+      - 9000:9000
+networks:
+  kirby:
+volumes:
+  app:
+    driver_opts:
+      type: none
+      device: '${PWD}'
+      o: bind
+  caddy_data:
+    external: true
+  caddy_config:
