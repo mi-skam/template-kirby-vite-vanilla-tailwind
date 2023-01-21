@@ -8,8 +8,9 @@
     "dev": "concurrently \"npm:php-server\" \"npm:vite\"",
     "php-server": "cross-os php-server-os",
     "php-server-os" :{
-      "linux": "bash ./php.sh",
-      "win32": "echo 'I need to be created for windows, too!'"
+      "linux": "bash ./php-start.sh",
+      "darwin": "bash ./php-start.sh",
+      "win32": "php-start.cmd"
     },
     "php-server-fallback": "php -S localhost:8888 -t public server.php",
     "build": "vite build",
