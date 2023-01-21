@@ -3,9 +3,7 @@ import { readdirSync, statSync } from 'fs';
 import kirby from 'vite-plugin-kirby';
 import * as dotenv from 'dotenv';
 
-
 dotenv.config();
-
 
 const root = resolve(__dirname, 'src');
 const outDir = resolve(__dirname, 'public', 'dist');
@@ -30,6 +28,9 @@ export default ({ mode }) => ({
   server: {
     host: process.env.VITE_DEV_HOST || 'localhost',
     port: 3000,
+    open:
+      `http://${process.env.VITE_DEV_HOST_URL}:${process.env.VITE_DEV_PORT}/` ||
+      `http://${server.host}:${server.port}/}`,
   },
   preview: {
     port: 4000,
